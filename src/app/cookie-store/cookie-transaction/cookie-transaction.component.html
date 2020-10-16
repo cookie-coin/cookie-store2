@@ -1,0 +1,39 @@
+<mat-card *ngIf="myCookieAddress">
+  <mat-card-header>
+    <mat-card-title>Send Cookies</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+      <form [formGroup]="cookieTransactionForm">
+        <div>
+          <mat-form-field appearance="standard" class="address-field">
+            <mat-label>Recipient Address</mat-label>
+            <input type="text" matInput formControlName="recipientAddress" id="recipientAddress">
+            <mat-error *ngIf="getRecipientAddressControl().hasError('addressInvalid')">
+              Please enter a valid CookieCoin Address (base 58 encoded)!
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-form-field appearance="standard">
+            <mat-label>Amount</mat-label>
+            <input type="number" matInput formControlName="amount" id="amount">
+            <span matSuffix>COOKIE</span>
+            <mat-error *ngIf="getAmountControl().hasError('min')">
+              Minimum amount is 100 COOKIE!
+            </mat-error>
+            <mat-error *ngIf="getAmountControl().hasError('max')">
+              You can't send more cookies than you have ({{getAmountControl().getError('max').max | number}})!
+            </mat-error>
+          </mat-form-field>
+          <button [disabled]="!cookieTransactionForm.valid"
+                  mat-raised-button color="primary" (click)="sendCookies()">Send Cookies
+          </button>
+        </div>
+      </form>
+    </div>
+
+
+  </mat-card-content>
+</mat-card>

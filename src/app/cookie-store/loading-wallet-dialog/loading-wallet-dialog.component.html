@@ -1,0 +1,22 @@
+<ng-container *ngIf="!walletNotInstalled else walletMissing">
+  <h1 mat-dialog-title>Connecting to TronLink Wallet</h1>
+  <mat-dialog-content>
+    <mat-spinner></mat-spinner>
+  </mat-dialog-content>
+</ng-container>
+
+<ng-template #walletMissing>
+  <h1 mat-dialog-title>TronLink Wallet not installed</h1>
+  <mat-dialog-content>
+    <p>
+      Please install the TronLink browser plugin and login or create a new account.<br>
+      After that you can use the Cookie Store and start collecting and sharing Cookies ♥.
+    </p>
+
+  </mat-dialog-content>
+  <mat-dialog-actions *ngIf="walletNotInstalled">
+    <a href="https://chrome.google.com/webstore/detail/ibnejdfjmmkpcnlpebklmnkoeoihofec/" target="_blank">
+      <button mat-button color="primary">Install TronLink for Chrome</button>
+    </a>
+  </mat-dialog-actions>
+</ng-template>

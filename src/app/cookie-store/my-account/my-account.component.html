@@ -1,0 +1,38 @@
+<mat-card *ngIf="myCookieAddress">
+  <mat-card-header>
+    <mat-card-title>My Account</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div fxLayout="column" fxLayoutAlign="none start" fxLayoutGap="20px" class="account-container">
+      <div fxLayout="row" fxLayoutAlign="space-between center"
+           fxLayout.xs="column" fxLayoutAlign.xs="start none" class="cookie-balance" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <div class="account-label">Balance:</div>
+          <div> {{ myBalance | number }} COOKIE</div>
+        </div>
+        <div *ngIf="isCookieMonster()" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px"
+             fxLayoutGap.xs="100px">
+          <span class="status-label">Status  :</span> <img class="cookie-coin-logo" src="assets/img/cookie-monster.png">
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <div class="account-label">My Cookie Address:</div>
+        <div fxLayout="row" fxLayoutAlign="none center">
+          <mat-form-field appearance="standard" class="address-field">
+            <input matInput [value]="myCookieAddress">
+          </mat-form-field>
+          <button mat-icon-button color="primary"
+                  [cdkCopyToClipboard]="myCookieAddress" (cdkCopyToClipboardCopied)="showCopiedWellToClipboardEvent()"
+                  matTooltip="Copy my Address to receive Cookies" aria-label="Copy my Address to receive Cookies">
+            <mat-icon>content_copy</mat-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+
+  </mat-card-content>
+</mat-card>

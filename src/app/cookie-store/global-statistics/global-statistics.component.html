@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Statistics</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="start none">
+      <mat-list>
+        <div mat-subheader>Total Cookie Coins</div>
+        <mat-list-item>
+          <img matListAvatar src="assets/img/cookieCoinLogo.png">
+          <div mat-line> {{ totalCookies | number }} COOKIE</div>
+        </mat-list-item>
+      </mat-list>
+      <mat-list>
+        <div mat-subheader>Total Cookie Monsters</div>
+        <mat-list-item>
+          <img matListAvatar src="assets/img/cookie-monster.png">
+          <div mat-line> {{ totalCookieMonsters | number }}</div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+  </mat-card-content>
+</mat-card>

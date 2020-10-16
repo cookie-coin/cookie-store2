@@ -1,0 +1,16 @@
+
+:host {
+  width: 100%;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
