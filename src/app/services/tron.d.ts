@@ -66,6 +66,8 @@ declare module 'tronweb' {
     toUtf8(hex: any): any;
 
     defaultAddress: MyAddress;
+
+    address: AddressConverter;
   }
 
 
@@ -228,6 +230,11 @@ declare module 'tronweb' {
     hex: string;
     name: string;
   }
+
+  export class AddressConverter {
+    toHex(e: any): any;
+  }
+
 
   export default TronWeb;
 }
