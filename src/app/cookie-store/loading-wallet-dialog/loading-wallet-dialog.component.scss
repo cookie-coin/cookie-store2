@@ -1,14 +1,18 @@
 
+:host {
+  width: 100%;
+}
+
 .mat-dialog-content {
   min-height: 135px;
   display: flex;
   justify-content: center;
 }
 
-.mat-dialog-title {
-  text-align: center;
+.mat-card-header {
+  justify-content: center;
 }
 
-.mat-dialog-actions {
+.mat-card-actions {
   justify-content: center;
 }

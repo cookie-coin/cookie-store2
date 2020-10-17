@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {CookieClientService} from '../services/cookie-client.service';
 import {MatDialog} from '@angular/material/dialog';
-import {LoadingWalletDialogComponent} from './loading-wallet-dialog/loading-wallet-dialog.component';
+import {WalletStatus} from './loading-wallet-dialog/loading-wallet-dialog.component';
+import {BehaviorSubject, ReplaySubject, Subject} from 'rxjs';
 
 @Component({
   selector: 'app-cookie-store',
@@ -10,14 +11,21 @@ import {LoadingWalletDialogComponent} from './loading-wallet-dialog/loading-wall
 })
 export class CookieStoreComponent {
 
+  walletStatus: WalletStatus;
+
+  private isConnectedSubject: Subject<boolean> = new ReplaySubject(1);
+  private isMissingSubject: Subject<boolean> = new BehaviorSubject(false);
+
   constructor(private readonly cookieService: CookieClientService, public dialog: MatDialog) {
-    this.dialog.open(LoadingWalletDialogComponent, {
-      data: {isWalletConnected: this.cookieService.isWalletConnected.asObservable()},
-      minWidth: '350px',
-      minHeight: '150px',
-      disableClose: true
+    this.walletStatus = {
+      isConnected: this.isConnectedSubject.asObservable(),
+      isMissing: this.isMissingSubject.asObservable()
+    };
+    cookieService.isWalletConnected.subscribe(isConnected => {
+      this.isConnectedSubject.next(isConnected);
+    }, missing => {
+      this.isMissingSubject.next(true);
     });
   }
-
 
 }

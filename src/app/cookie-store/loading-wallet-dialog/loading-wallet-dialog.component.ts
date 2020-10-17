@@ -1,35 +1,39 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {WindowRef} from '../../services/cookie-client.service';
+import {filter, take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-loading-wallet-dialog',
   templateUrl: './loading-wallet-dialog.component.html',
   styleUrls: ['./loading-wallet-dialog.component.scss']
 })
-export class LoadingWalletDialogComponent {
+export class LoadingWalletDialogComponent implements OnInit {
 
-  walletNotInstalled: boolean = false;
+  @Input()
+  walletStatus: WalletStatus;
 
-  constructor(public dialogRef: MatDialogRef<LoadingWalletDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public walletStatus: WalletStatus,
-              private winRef: WindowRef) {
-    walletStatus.isWalletConnected.subscribe(status => {
-      if (status) {
-        dialogRef.close();
-      }
-    }, _ => {
-      this.walletNotInstalled = true;
-    });
+  isConnected: boolean = false;
+  isMissing: boolean = false;
+
+  constructor(private winRef: WindowRef) {
+  }
+
+  ngOnInit(): void {
+    this.walletStatus.isConnected
+      .pipe(filter(connected => connected), take(1))
+      .subscribe(connected => this.isConnected = connected);
+    this.walletStatus.isMissing
+      .pipe(filter(missing => missing), take(1))
+      .subscribe(missing => this.isMissing = missing);
   }
 
   reloadStore() {
     this.winRef.nativeWindow.location.reload();
   }
-
 }
 
-export interface WalletStatus {
-  isWalletConnected: Observable<boolean>
+export class WalletStatus {
+  isConnected: Observable<boolean>;
+  isMissing: Observable<boolean>;
 }

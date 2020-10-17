@@ -1,7 +1,7 @@
 version: '3'
 services:
   cookie-store:
-    image: daflockinger/cookie-store:0.0.11
+    image: daflockinger/cookie-store:0.0.12
     container_name: cookie-store
     environment:
       - VIRTUAL_HOST=cookie.flockinger.com

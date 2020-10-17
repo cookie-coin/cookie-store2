@@ -12,7 +12,7 @@ const COOKIE_MONSTER_MIN_BALANCE = 1000;
 })
 export class MyAccountComponent {
 
-  myCookieAddress: String;
+  myCookieAddress: String = '';
   myBalance: number;
 
   cookieMonsterTooltip = 'You are a Cookie Monster. That means you will get a fair share of COOKIE for every Cookie Coin transaction in the blockchain.';
