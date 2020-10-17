@@ -15,6 +15,8 @@ export class MyAccountComponent {
   myCookieAddress: String;
   myBalance: number;
 
+  cookieMonsterTooltip = 'You are a Cookie Monster. That means you will get a fair share of COOKIE for every Cookie Coin transaction in the blockchain.';
+
   constructor(private readonly cookieService: CookieClientService, private readonly snackbar: MatSnackBar) {
     this.cookieService.address
       .pipe(tap(a => this.cookieService.balanceOf(a).subscribe(balance => this.myBalance = balance)))

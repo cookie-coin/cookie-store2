@@ -4,7 +4,6 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HomeComponent} from './home/home.component';
 import {WindowRef} from './services/cookie-client.service';
 import {CookieStoreComponent} from './cookie-store/cookie-store.component';
 import {FooterComponent} from './cookie-store/footer/footer.component';
@@ -33,7 +32,6 @@ import {ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     CookieStoreComponent,
     FooterComponent,
     HeaderComponent,

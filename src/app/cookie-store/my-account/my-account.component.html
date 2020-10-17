@@ -13,7 +13,8 @@
         </div>
         <div *ngIf="isCookieMonster()" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px"
              fxLayoutGap.xs="100px">
-          <span class="status-label">Status  :</span> <img class="cookie-coin-logo" src="assets/img/cookie-monster.png">
+          <span class="status-label">Status  :</span>
+          <img class="cookie-coin-logo" src="assets/img/cookie-monster.png" [matTooltip]="cookieMonsterTooltip">
         </div>
       </div>
 
