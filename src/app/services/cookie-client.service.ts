@@ -31,7 +31,7 @@ export class CookieClientService {
   }
 
   private getTronWebWithRetries(): Observable<TronWeb> {
-    return of<TronWeb>(this.winRef.nativeWindow.window.tronWeb)
+    return of<TronWeb>(this.winRef.nativeWindow.tronWeb)
       .pipe(
         tap(tron => {
           if (tron == null) {
