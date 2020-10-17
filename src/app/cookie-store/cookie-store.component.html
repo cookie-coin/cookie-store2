@@ -4,6 +4,8 @@
 
   <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px" class="store-front">
 
+    <app-loading-wallet-dialog [walletStatus]="walletStatus"></app-loading-wallet-dialog>
+
     <app-my-account></app-my-account>
 
     <app-cookie-transaction></app-cookie-transaction>

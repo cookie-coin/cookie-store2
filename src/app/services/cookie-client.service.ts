@@ -31,14 +31,16 @@ export class CookieClientService {
   }
 
   private getTronWebWithRetries(): Observable<TronWeb> {
-    return of<TronWeb>(this.winRef.nativeWindow.tronWeb)
+    return of<boolean>(true)
       .pipe(
+        delay(3000),
+        map(_ => this.winRef.nativeWindow.tronWeb),
         tap(tron => {
           if (tron == null) {
             throw new Error('TronWeb not present!');
           }
         }),
-        this.retryThenThrow(20),
+        this.retryThenThrow(5),
         tap(t => {
           if (t != null) {
             this.tronSubject.next(t);

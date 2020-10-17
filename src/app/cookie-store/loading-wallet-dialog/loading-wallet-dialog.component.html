@@ -1,23 +1,33 @@
-<ng-container *ngIf="!walletNotInstalled else walletMissing">
-  <h1 mat-dialog-title>Connecting to TronLink Wallet</h1>
-  <mat-dialog-content>
-    <mat-spinner></mat-spinner>
-  </mat-dialog-content>
+<ng-container *ngIf="!isConnected">
+
+  <ng-container *ngIf="!isMissing else walletMissing">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Connecting to TronLink Wallet</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+
+  <ng-template #walletMissing>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>TronLink Wallet not installed</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Please install the TronLink browser plugin and login or create a new account.<br>
+          After that you can use the Cookie Store and start collecting and sharing Cookies ♥.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a href="https://chrome.google.com/webstore/detail/ibnejdfjmmkpcnlpebklmnkoeoihofec/" target="_blank">
+          <button mat-button color="primary">Install TronLink for Chrome</button>
+        </a>
+        <button mat-button color="accent" (click)="reloadStore()">Retry connecting wallet</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-template>
 </ng-container>
-
-<ng-template #walletMissing>
-  <h1 mat-dialog-title>TronLink Wallet not installed</h1>
-  <mat-dialog-content>
-    <p>
-      Please install the TronLink browser plugin and login or create a new account.<br>
-      After that you can use the Cookie Store and start collecting and sharing Cookies ♥.
-    </p>
-
-  </mat-dialog-content>
-  <mat-dialog-actions *ngIf="walletNotInstalled">
-    <a href="https://chrome.google.com/webstore/detail/ibnejdfjmmkpcnlpebklmnkoeoihofec/" target="_blank">
-      <button mat-button color="primary">Install TronLink for Chrome</button>
-    </a>
-    <button mat-button color="accent" (click)="reloadStore()">Retry connecting wallet</button>
-  </mat-dialog-actions>
-</ng-template>
