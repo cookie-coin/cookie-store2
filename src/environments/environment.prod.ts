@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  trongridApi: 'https://api.trongrid.io',
-  contractAddress: '4149349217f2904a717dda74c51791813c259ccc5e'
+  contractAddress: '4194d02c8ba94a04841b077535642576fa17d17cbc'
 };
